@@ -20,7 +20,7 @@ public class ActionError {
     public Map<String, String> formErrors;
 
     public static ActionError fromJsonParam(Optional<String> json) {
-        if(json.isPresent()) {
+        if (json.isPresent()) {
             try {
                 return RedirectUtil.mapper.readValue(json.get(), ActionError.class);
             } catch (JsonProcessingException e) {

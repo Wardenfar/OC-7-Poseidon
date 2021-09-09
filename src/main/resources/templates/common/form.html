@@ -1,0 +1,23 @@
+<div th:each="field : ${fields}">
+
+    <label th:for="${field.key}">
+        <span th:text="${field.name}"></span>
+        <span th:if="${error != null && error.formErrors.containsKey(field.key)}">
+						<span class="font-weight-light" style="color: red"
+                              th:text="${error.formErrors.get(field.key)}"></span>
+					</span>
+    </label>
+
+    <div class="form-group" th:if="${field.type == 'text'}">
+        <input class="form-control" th:id="${field.key}" th:name="${field.key}" type="text">
+    </div>
+    <div th:if="${field.type == 'int'}">
+        <input class="form-control" step="1" th:id="${field.key}" th:name="${field.key}" type="number">
+    </div>
+    <div th:if="${field.type == 'double'}">
+        <input class="form-control" step="0.001" th:id="${field.key}" th:name="${field.key}" type="number">
+    </div>
+    <div th:if="${field.type == 'date'}">
+        <input class="form-control" th:id="${field.key}" th:name="${field.key}" type="date">
+    </div>
+</div>

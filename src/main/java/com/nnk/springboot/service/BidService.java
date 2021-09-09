@@ -9,12 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @Service
 @NoArgsConstructor
-public class BidService {
+public class BidService implements IService<Bid> {
 
     @Autowired
     BidRepository repository;
@@ -57,7 +56,20 @@ public class BidService {
                 new Field("bid", "Bid", "double"),
                 new Field("ask", "Ask", "double"),
                 new Field("benchmark", "Benchmark", "double"),
-                new Field("bidDate", "Date", "date")
+                new Field("bidDate", "Date", "date"),
+                new Field("commentary", "Commentary", "text"),
+                new Field("security", "Security", "text"),
+                new Field("status", "Status", "date"),
+                new Field("trader", "Trader", "text"),
+                new Field("book", "Book", "text"),
+                new Field("creationName", "Name of Creation", "text"),
+                new Field("creationDate", "Date of Creation", "date"),
+                new Field("revisionName", "Name of Revision", "text"),
+                new Field("revisionDate", "Date of Revision", "date"),
+                new Field("dealName", "Name of Deal", "text"),
+                new Field("dealType", "Type of Deal", "text"),
+                new Field("sourceListId", "List of Sources", "text"),
+                new Field("side", "Side", "text")
         );
     }
 }

@@ -1,24 +1,25 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" 
-	  xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-<meta charset="utf-8"/>
-<title>Home</title>
-<link rel="stylesheet" th:href="@{../../css/bootstrap.min.css}" >
+    <meta charset="utf-8"/>
+    <title>Home</title>
+    <link rel="stylesheet" th:href="@{../../css/bootstrap.min.css}">
 </head>
 <body>
 <div class="container">
-	<div class="row">
-		<h2>Update Bid</h2>
-	</div>
+    <div class="row">
+        <h2>Update Bid</h2>
+    </div>
 
-	<div class="row">
-		<form action="#" th:action="@{/bid/update/{id}(id=${bid.bidId})}" th:object="${bid}" method="post" class="form-horizontal" style="width: 100%">
-			<!--
-			TODO: Create a form to edit the values of Bid, there are 2 buttons: Update data and Cancel to the list Bid
-			 -->
-		</form>
-	</div>
+    <div class="row">
+        <form action="#" class="form-horizontal" method="post" style="width: 100%"
+              th:action="@{/bid/update/{id}(id=${bid.bidId})}" th:object="${bid}">
+            <!--
+            TODO: Create a form to edit the values of Bid, there are 2 buttons: Update data and Cancel to the list Bid
+             -->
+        </form>
+    </div>
 
 </div>
 </body>

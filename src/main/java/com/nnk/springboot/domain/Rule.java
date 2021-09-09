@@ -1,10 +1,10 @@
 package com.nnk.springboot.domain;
 
-import javax.persistence.*;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "rule")
@@ -19,19 +19,19 @@ public class Rule {
 
     @Column
     String name;
- 
+
     @Column
     String description;
- 
+
     @Column
     String json;
- 
+
     @Column
     String template;
- 
+
     @Column
     String sqlStr;
- 
+
     @Column
     String sqlPart;
 

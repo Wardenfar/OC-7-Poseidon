@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title> Spring Boot </title>
-    <link rel="stylesheet" href="/css/styles.css"/>
+    <link href="/css/styles.css" rel="stylesheet"/>
 </head>
 <body>
 <h3> HOME PAGE </h3>
 <p>
-    <a href="/app/login">Login</a> or create one <a href="/user/list">User management</a>
+    <a th:href="@{/app/login}"> or create one <a href="/user/list">User management</a>
 </p>
 </body>
 </html>

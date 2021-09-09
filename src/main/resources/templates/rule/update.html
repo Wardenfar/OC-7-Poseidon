@@ -1,26 +1,27 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta charset="utf-8"/>
-	<title>Home</title>
-	<link rel="stylesheet" th:href="@{../../css/bootstrap.min.css}" >
+    <meta charset="utf-8"/>
+    <title>Home</title>
+    <link rel="stylesheet" th:href="@{../../css/bootstrap.min.css}">
 </head>
 <body>
 <div class="container">
 
-	<div class="row">
-		<h2>Update New Rule</h2>
-	</div>
+    <div class="row">
+        <h2>Update New Rule</h2>
+    </div>
 
-	<div class="row">
-		<form action="#" th:action="@{/templates/rule/update/{id}(id=${rule.id})}" th:object="${rule}" method="post" class="form-horizontal" style="width: 100%">
-			<!--
-			TODO: Create a form to edit the values of RuleName, there are 2 buttons: Update data and Cancel to the RuleName
-			 -->
+    <div class="row">
+        <form action="#" class="form-horizontal" method="post" style="width: 100%"
+              th:action="@{/templates/rule/update/{id}(id=${rule.id})}" th:object="${rule}">
+            <!--
+            TODO: Create a form to edit the values of RuleName, there are 2 buttons: Update data and Cancel to the RuleName
+             -->
 
-		</form>
-	</div>
+        </form>
+    </div>
 
 </div>
 </body>

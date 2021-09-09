@@ -1,9 +1,9 @@
 package com.nnk.springboot.controllers;
 
-import com.nnk.springboot.domain.Bid;
+import com.nnk.springboot.domain.CurvePoint;
 import com.nnk.springboot.error.EntityNotValidException;
 import com.nnk.springboot.model.ActionError;
-import com.nnk.springboot.service.BidService;
+import com.nnk.springboot.service.CurvePointService;
 import com.nnk.springboot.util.RedirectUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,52 +16,49 @@ import javax.validation.Valid;
 import java.util.Optional;
 
 @Controller
-public class BidController {
+public class CurvePointController {
 
     @Autowired
-    BidService bidService;
+    CurvePointService curvePointService;
 
-    @RequestMapping("/bid/list")
+    @RequestMapping("/curvePoint/list")
     public String home(Model model) {
-        model.addAttribute("bids", bidService.findAll());
-        return "bid/list";
+        model.addAttribute("curvePoints", curvePointService.findAll());
+        return "curvePoint/list";
     }
 
-    @GetMapping("/bid/add")
+    @GetMapping("/curvePoint/add")
     public String addBidForm(Model model, @RequestParam Optional<String> msg, @RequestParam Optional<String> error) {
         msg.ifPresent((m) -> model.addAttribute("msg", m));
         model.addAttribute("error", ActionError.fromJsonParam(error));
-        model.addAttribute("bid", new Bid());
-        model.addAttribute("fields", bidService.listFields());
-        return "bid/add";
+        model.addAttribute("curvePoint", new CurvePoint());
+        model.addAttribute("fields", curvePointService.listFields());
+        return "curvePoint/add";
     }
 
-    @PostMapping("/bid/validate")
-    public RedirectView validate(@Valid @ModelAttribute("bid") Bid bid, BindingResult bindingResult) throws EntityNotValidException {
+    @PostMapping("/curvePoint/validate")
+    public RedirectView validate(@Valid @ModelAttribute("curvePoint") CurvePoint curvePoint, BindingResult bindingResult) throws EntityNotValidException {
         if (bindingResult.hasErrors()) {
             ActionError error = ActionError.fromBindingResult(bindingResult);
-            return RedirectUtil.redirectTo("/bid/add", null, error);
+            return RedirectUtil.redirectTo("/curvePoint/add", null, error);
         }
-        bidService.save(bid);
-        return RedirectUtil.redirectTo("/bid/list", null, null);
+        curvePointService.save(curvePoint);
+        return RedirectUtil.redirectTo("/curvePoint/list", null, null);
     }
 
-    @GetMapping("/bid/update/{id}")
+    @GetMapping("/curvePoint/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
-        model.addAttribute("bid", new Bid());
-        return "bid/update";
+        return "curvePoint/update";
     }
 
-    @PostMapping("/bid/update/{id}")
-    public String updateBid(@PathVariable("id") Integer id, @Valid Bid bid,
+    @PostMapping("/curvePoint/update/{id}")
+    public String updateBid(@PathVariable("id") Integer id, @Valid CurvePoint curvePoint,
                             BindingResult result, Model model) {
-        // TODO: check required fields, if valid call service to update Bid and return list Bid
-        return "redirect:/bid/list";
+        return "redirect:/curvePoint/list";
     }
 
-    @GetMapping("/bid/delete/{id}")
+    @GetMapping("/curvePoint/delete/{id}")
     public String deleteBid(@PathVariable("id") Integer id, Model model) {
-        // TODO: Find Bid by Id and delete the bid, return to Bid list
-        return "redirect:/bid/list";
+        return "redirect:/curvePoint/list";
     }
 }

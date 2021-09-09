@@ -81,6 +81,7 @@ public class Bid {
     String creationName;
 
     @Column
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @NotNull
     LocalDate creationDate;
 
@@ -89,6 +90,7 @@ public class Bid {
     String revisionName;
 
     @Column
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @NotNull
     LocalDate revisionDate;
 

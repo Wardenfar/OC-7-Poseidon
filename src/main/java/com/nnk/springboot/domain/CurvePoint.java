@@ -1,12 +1,13 @@
 package com.nnk.springboot.domain;
 
-import javax.persistence.*;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import java.sql.Timestamp;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 
 
 @Entity
@@ -21,19 +22,26 @@ public class CurvePoint {
     Integer id;
 
     @Column
+    @NotNull
     Integer curveId;
- 
+
     @Column
-    Timestamp asOfDate;
- 
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @NotNull
+    LocalDate asOfDate;
+
     @Column
+    @NotNull
     Double term;
- 
+
     @Column
+    @NotNull
     Double value;
- 
+
     @Column
-    Timestamp creationDate;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @NotNull
+    LocalDate creationDate;
 
     public CurvePoint(int curveId, double term, double value) {
         setCurveId(curveId);
