@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<title>Home</title>
+<link rel="stylesheet" th:href="@{../../css/bootstrap.min.css}" >
+</head>
+<body>
+<div class="container">
+
+	<div class="row">
+		<h2>Add New Bid</h2>
+	</div>
+
+	<div class="alert alert-danger" role="alert" th:if="${error}">
+		There are some errors
+	</div>
+	<div class="alert alert-success" role="alert"
+		 th:if="${msg}" th:text="${msg}">
+	</div>
+
+	<div class="row">
+		<form action="#" th:action="@{/bid/validate}" th:object="${bid}" method="post" class="form-horizontal" style="width: 100%">
+			<div th:each="field : ${fields}">
+
+				<label th:for="${field.key}">
+					<span th:text="${field.name}"></span>
+					<span th:if="${error != null && error.formErrors.containsKey(field.key)}">
+						<span class="font-weight-light" style="color: red" th:text="${error.formErrors.get(field.key)}"></span>
+					</span>
+				</label>
+
+				<div th:if="${field.type == 'text'}" class="form-group">
+					<input type="text" class="form-control" th:id="${field.key}" th:name="${field.key}">
+				</div>
+				<div th:if="${field.type == 'int'}">
+					<input type="number" step="1" class="form-control" th:id="${field.key}" th:name="${field.key}">
+				</div>
+				<div th:if="${field.type == 'double'}">
+					<input type="number" step="0.001" class="form-control" th:id="${field.key}" th:name="${field.key}">
+				</div>
+				<div th:if="${field.type == 'date'}">
+					<input type="date" class="form-control" th:id="${field.key}" th:name="${field.key}">
+				</div>
+			</div>
+
+			<div class="d-flex mt-2">
+				<a class="btn btn-danger m-1" th:href="@{/bid/list}">Cancel</a>
+				<button class="btn btn-success m-1" type="submit">Submit</button>
+			</div>
+		</form>
+	</div>
+
+</div>
+</body>
+</html>

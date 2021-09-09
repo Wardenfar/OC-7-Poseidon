@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <title>Home</title>
-<link rel="stylesheet" href="../../css/bootstrap.min.css" >
+<link rel="stylesheet" th:href="@{../../css/bootstrap.min.css}" >
 </head>
 <body>
 <div class="container">
@@ -13,7 +13,7 @@
 	</div>
 
 	<div class="row">
-		<form action="#" th:action="@{/bidList/update/{id}(id=${bidList.bidListId})}" th:object="${bidList}" method="post" class="form-horizontal" style="width: 100%">
+		<form action="#" th:action="@{/bid/update/{id}(id=${bid.bidId})}" th:object="${bid}" method="post" class="form-horizontal" style="width: 100%">
 			<!--
 			TODO: Create a form to edit the values of Bid, there are 2 buttons: Update data and Cancel to the list Bid
 			 -->

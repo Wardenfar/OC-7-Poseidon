@@ -1,90 +1,114 @@
 package com.nnk.springboot.domain;
 
-import java.sql.Timestamp;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+import java.time.LocalDate;
 
 @Entity
-@Table(name = "bidlist")
+@Table(name = "bid")
 @Getter
 @Setter
 @NoArgsConstructor
-public class BidList {
+public class Bid {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Integer bidListId;
+    @Positive
+    Integer bidId;
 
     @Column
+    @NotBlank
     String account;
- 
+
     @Column
+    @NotBlank
     String type;
- 
+
     @Column
+    @NotNull
     Double bidQuantity;
- 
+
     @Column
+    @NotNull
+    Double askQuantity;
+
+    @Column
+    @NotNull
     Double bid;
- 
+
     @Column
+    @NotNull
     Double ask;
- 
+
     @Column
+    @NotBlank
     String benchmark;
- 
+
     @Column
-    Timestamp bidListDate;
- 
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @NotNull
+    LocalDate bidDate;
+
     @Column
+    @NotBlank
     String commentary;
- 
+
     @Column
+    @NotBlank
     String security;
- 
+
     @Column
+    @NotBlank
     String status;
- 
+
     @Column
+    @NotBlank
     String trader;
- 
+
     @Column
+    @NotBlank
     String book;
- 
+
     @Column
+    @NotBlank
     String creationName;
- 
+
     @Column
-    Timestamp creationDate;
- 
+    @NotNull
+    LocalDate creationDate;
+
     @Column
+    @NotBlank
     String revisionName;
- 
+
     @Column
-    Timestamp revisionDate;
- 
+    @NotNull
+    LocalDate revisionDate;
+
     @Column
+    @NotBlank
     String dealName;
- 
+
     @Column
+    @NotBlank
     String dealType;
- 
+
     @Column
+    @NotBlank
     String sourceListId;
- 
+
     @Column
+    @NotBlank
     String side;
 
-    public BidList(String account, String type, double bidQuantity) {
+    public Bid(String account, String type, double bidQuantity) {
         this.setAccount(account);
         this.setType(type);
         this.setBidQuantity(bidQuantity);

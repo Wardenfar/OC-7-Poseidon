@@ -4,17 +4,17 @@
 <head>
 <meta charset="utf-8"/>
 <title>Home</title>
-<link rel="stylesheet" href="../../css/bootstrap.min.css" >
+<link rel="stylesheet" th:href="@{../../css/bootstrap.min.css}" >
 </head>
 <body>
 <div class="container">
 	<div class="row">
 		<div class="col-6">
-			<a href="/bidList/list">Bid List</a>&nbsp;|&nbsp;
-			<a href="/curvePoint/list">Curve Points</a>&nbsp;|&nbsp;
-			<a href="/rating/list">Ratings</a>&nbsp;|&nbsp;
-			<a href="/trade/list">Trade</a>&nbsp;|&nbsp;
-			<a href="/rule/list">Rule</a>
+			<a th:href="@{/bid/list}">Bid List</a>&nbsp;|&nbsp;
+			<a th:href="@{/curvePoint/list}">Curve Points</a>&nbsp;|&nbsp;
+			<a th:href="@{/rating/list}">Ratings</a>&nbsp;|&nbsp;
+			<a th:href="@{/trade/list}">Trade</a>&nbsp;|&nbsp;
+			<a th:href="@{/rule/list}">Rule</a>
 		</div>
 		<div class="col-6 text-right">
 			Logged in user: <b th:inline="text"  class="user"> [[${#httpServletRequest.remoteUser}]] </b>
@@ -25,7 +25,7 @@
 	</div>
 	<div class="row"><h2>Bid List</h2></div>
 	<div class="row">
-		<a href="/bidList/add" class="btn btn-primary btn-sm">Add New</a>
+		<a th:href="@{/bid/add}" class="btn btn-primary btn-sm">Add New</a>
 		<table class="table table-bordered">
 			<thead>
 				<tr>
@@ -37,7 +37,13 @@
 				</tr>
 			</thead>
 			<tbody>
-				<!-- TODO: Show all Bids to the table, the Action column will have Edit & Delete buttons -->
+				<tr th:each="bl: ${bids}">
+					<td th:text="${bl.getBidId()}"></td>
+					<td th:text="${bl.getAccount()}"></td>
+					<td th:text="${bl.getType()}"></td>
+					<td th:text="${bl.getBidQuantity()}"></td>
+					<td>Actions</td>
+				</tr>
 			</tbody>
 		</table>
 	</div>
