@@ -53,13 +53,13 @@ public class CurvePointService implements IService<CurvePoint> {
     }
 
     @Override
-    public List<Field> listFields() {
+    public List<Field> listFields(CurvePoint e) {
         return List.of(
-                new Field("curveId", "ID", "int"),
-                new Field("asOfDate", "As of Date", "date"),
-                new Field("term", "Term", "double"),
-                new Field("value", "Value", "double"),
-                new Field("creationDate", "Date of Creation", "date")
+                new Field("curveId", "ID", "int", e.getCurveId()),
+                new Field("asOfDate", "As of Date", "date", e.getAsOfDate()),
+                new Field("term", "Term", "double", e.getTerm()),
+                new Field("value", "Value", "double", e.getValue()),
+                new Field("creationDate", "Date of Creation", "date", e.getCreationDate())
         );
     }
 }

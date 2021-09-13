@@ -1,6 +1,7 @@
 package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.domain.Bid;
+import com.nnk.springboot.error.EntityNotFoundException;
 import com.nnk.springboot.error.EntityNotValidException;
 import com.nnk.springboot.model.ActionError;
 import com.nnk.springboot.service.BidService;
@@ -32,7 +33,7 @@ public class BidController {
         msg.ifPresent((m) -> model.addAttribute("msg", m));
         model.addAttribute("error", ActionError.fromJsonParam(error));
         model.addAttribute("bid", new Bid());
-        model.addAttribute("fields", bidService.listFields());
+        model.addAttribute("fields", bidService.listFields(new Bid()));
         return "bid/add";
     }
 
@@ -47,16 +48,28 @@ public class BidController {
     }
 
     @GetMapping("/bid/update/{id}")
-    public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
-        model.addAttribute("bid", new Bid());
+    public String showUpdateForm(@PathVariable("id") Integer id, Model model, @RequestParam Optional<String> msg, @RequestParam Optional<String> error) throws EntityNotFoundException {
+        Optional<Bid> optional = bidService.findById(id);
+        if(optional.isEmpty()) {
+            throw new EntityNotFoundException("Bid not found");
+        }
+        Bid e = optional.get();
+        msg.ifPresent((m) -> model.addAttribute("msg", m));
+        model.addAttribute("bid", e);
+        model.addAttribute("fields", bidService.listFields(e));
+        model.addAttribute("error", ActionError.fromJsonParam(error));
         return "bid/update";
     }
 
     @PostMapping("/bid/update/{id}")
-    public String updateBid(@PathVariable("id") Integer id, @Valid Bid bid,
-                            BindingResult result, Model model) {
-        // TODO: check required fields, if valid call service to update Bid and return list Bid
-        return "redirect:/bid/list";
+    public RedirectView updateBid(@PathVariable("id") Integer id, @Valid @ModelAttribute("bid") Bid bid, BindingResult bindingResult) throws EntityNotValidException {
+        if (bindingResult.hasErrors()) {
+            ActionError error = ActionError.fromBindingResult(bindingResult);
+            return RedirectUtil.redirectTo("/bid/update/" + id, null, error);
+        }
+        bid.setId(id);
+        bidService.save(bid);
+        return RedirectUtil.redirectTo("/bid/list", null, null);
     }
 
     @GetMapping("/bid/delete/{id}")

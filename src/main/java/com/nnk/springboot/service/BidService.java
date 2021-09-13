@@ -46,30 +46,30 @@ public class BidService implements IService<Bid> {
         repository.save(e);
     }
 
-    public List<Field> listFields() {
+    public List<Field> listFields(Bid e) {
         return List.of(
-                new Field("bidId", "ID", "int"),
-                new Field("account", "Account", "text"),
-                new Field("type", "Type", "text"),
-                new Field("bidQuantity", "Bid Quantity", "double"),
-                new Field("askQuantity", "Ask Quantity", "double"),
-                new Field("bid", "Bid", "double"),
-                new Field("ask", "Ask", "double"),
-                new Field("benchmark", "Benchmark", "double"),
-                new Field("bidDate", "Date", "date"),
-                new Field("commentary", "Commentary", "text"),
-                new Field("security", "Security", "text"),
-                new Field("status", "Status", "date"),
-                new Field("trader", "Trader", "text"),
-                new Field("book", "Book", "text"),
-                new Field("creationName", "Name of Creation", "text"),
-                new Field("creationDate", "Date of Creation", "date"),
-                new Field("revisionName", "Name of Revision", "text"),
-                new Field("revisionDate", "Date of Revision", "date"),
-                new Field("dealName", "Name of Deal", "text"),
-                new Field("dealType", "Type of Deal", "text"),
-                new Field("sourceListId", "List of Sources", "text"),
-                new Field("side", "Side", "text")
+                new Field("bidId", "ID", "int", e.getId()),
+                new Field("account", "Account", "text", e.getAccount()),
+                new Field("type", "Type", "text", e.getType()),
+                new Field("bidQuantity", "Bid Quantity", "double", e.getBidQuantity()),
+                new Field("askQuantity", "Ask Quantity", "double", e.getAskQuantity()),
+                new Field("bid", "Bid", "double", e.getBid()),
+                new Field("ask", "Ask", "double", e.getAsk()),
+                new Field("benchmark", "Benchmark", "double", e.getBenchmark()),
+                new Field("bidDate", "Date", "date", e.getBidDate()),
+                new Field("commentary", "Commentary", "text", e.getCommentary()),
+                new Field("security", "Security", "text", e.getSecurity()),
+                new Field("status", "Status", "date", e.getStatus()),
+                new Field("trader", "Trader", "text", e.getTrader()),
+                new Field("book", "Book", "text", e.getBook()),
+                new Field("creationName", "Name of Creation", "text", e.getCreationName()),
+                new Field("creationDate", "Date of Creation", "date", e.getCreationDate()),
+                new Field("revisionName", "Name of Revision", "text", e.getRevisionName()),
+                new Field("revisionDate", "Date of Revision", "date", e.getRevisionDate()),
+                new Field("dealName", "Name of Deal", "text", e.getDealName()),
+                new Field("dealType", "Type of Deal", "text", e.getDealType()),
+                new Field("sourceListId", "List of Sources", "text", e.getSourceListId()),
+                new Field("side", "Side", "text", e.getSide())
         );
     }
 }

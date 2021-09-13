@@ -32,7 +32,7 @@ public class CurvePointController {
         msg.ifPresent((m) -> model.addAttribute("msg", m));
         model.addAttribute("error", ActionError.fromJsonParam(error));
         model.addAttribute("curvePoint", new CurvePoint());
-        model.addAttribute("fields", curvePointService.listFields());
+        model.addAttribute("fields", curvePointService.listFields(new CurvePoint()));
         return "curvePoint/add";
     }
 

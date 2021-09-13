@@ -19,5 +19,5 @@ public interface IService<T> {
 
     void save(T e) throws EntityNotValidException;
 
-    List<Field> listFields();
+    List<Field> listFields(T e);
 }

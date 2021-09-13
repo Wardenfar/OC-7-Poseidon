@@ -26,7 +26,7 @@ public class BidTests {
 
         // Save
         bid = bidRepository.save(bid);
-        assertNotNull(bid.getBidId());
+        assertNotNull(bid.getId());
         assertEquals(bid.getBidQuantity(), 10d, 10d);
 
         // Update
@@ -39,7 +39,7 @@ public class BidTests {
         assertTrue(listResult.size() > 0);
 
         // Delete
-        Integer id = bid.getBidId();
+        Integer id = bid.getId();
         bidRepository.delete(bid);
         Optional<Bid> bidOpt = bidRepository.findById(id);
         assertFalse(bidOpt.isPresent());

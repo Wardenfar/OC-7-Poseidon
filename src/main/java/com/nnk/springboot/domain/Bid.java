@@ -21,7 +21,7 @@ public class Bid {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Positive
-    Integer bidId;
+    Integer id;
 
     @Column
     @NotBlank
