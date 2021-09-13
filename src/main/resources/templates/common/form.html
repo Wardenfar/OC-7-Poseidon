@@ -9,15 +9,15 @@
     </label>
 
     <div class="form-group" th:if="${field.type == 'text'}">
-        <input class="form-control" th:id="${field.key}" th:name="${field.key}" type="text">
+        <input class="form-control" th:id="${field.key}" th:name="${field.key}" th:value="${field.textValue()}" type="text">
     </div>
     <div th:if="${field.type == 'int'}">
-        <input class="form-control" step="1" th:id="${field.key}" th:name="${field.key}" type="number">
+        <input class="form-control" step="1" th:id="${field.key}" th:name="${field.key}" th:value="${field.textValue()}" type="number">
     </div>
     <div th:if="${field.type == 'double'}">
-        <input class="form-control" step="0.001" th:id="${field.key}" th:name="${field.key}" type="number">
+        <input class="form-control" step="0.001" th:id="${field.key}" th:name="${field.key}" th:value="${field.textValue()}" type="number">
     </div>
     <div th:if="${field.type == 'date'}">
-        <input class="form-control" th:id="${field.key}" th:name="${field.key}" type="date">
+        <input class="form-control" th:id="${field.key}" th:name="${field.key}" th:value="${field.dateValue()}" type="date">
     </div>
 </div>

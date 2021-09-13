@@ -12,14 +12,19 @@
         <h2>Update Bid</h2>
     </div>
 
+    <div th:insert="common/msg"></div>
+
     <div class="row">
-        <form action="#" class="form-horizontal" method="post" style="width: 100%"
-              th:action="@{/bid/update/{id}(id=${bid.bidId})}" th:object="${bid}">
-            <!--
-            TODO: Create a form to edit the values of Bid, there are 2 buttons: Update data and Cancel to the list Bid
-             -->
+        <form action="#" class="form-horizontal" method="post" style="width: 100%" th:action="@{/bid/update/{id}(id=${bid.id})}"
+              th:object="${bid}">
+            <div th:insert="common/form"></div>
+            <div class="d-flex mt-2">
+                <a class="btn btn-danger m-1" th:href="@{/bid/list}">Cancel</a>
+                <button class="btn btn-success m-1" type="submit">Submit</button>
+            </div>
         </form>
     </div>
+
 
 </div>
 </body>

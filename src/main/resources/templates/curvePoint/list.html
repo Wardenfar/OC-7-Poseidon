@@ -10,7 +10,7 @@
 <div class="container">
     <div class="row">
         <div class="col-6">
-            <a th:href="@{/bid/list}">Bid List</a>&nbsp;|&nbsp;
+            <a th:href="@{/curvePoint/list}">Bid List</a>&nbsp;|&nbsp;
             <a th:href="@{/curvePoint/list}">Curve Points</a>&nbsp;|&nbsp;
             <a th:href="@{/rating/list}">Ratings</a>&nbsp;|&nbsp;
             <a th:href="@{/trade/list}">Trade</a>&nbsp;|&nbsp;
@@ -30,7 +30,6 @@
             <thead>
             <tr>
                 <th>Id</th>
-                <th>CurvePointId</th>
                 <th>Term</th>
                 <th>Value</th>
                 <th>Action</th>
@@ -38,11 +37,13 @@
             </thead>
             <tbody>
             <tr th:each="cp: ${curvePoints}">
-                <td th:text="${cp.curveId}"></td>
+                <td th:text="${cp.id}"></td>
                 <td th:text="${cp.term}"></td>
                 <td th:text="${cp.value}"></td>
-                <td th:text="${cp.value}"></td>
-                <td>Actions</td>
+                <td>
+                    <a class="btn btn-primary btn-sm" th:href="@{/curvePoint/update/{id}(id=${cp.id})}">Update</a>              
+                    <a class="btn btn-primary btn-sm" th:href="@{/curvePoint/delete/{id}(id=${cp.id})}">Delete</a>              
+                </td>
             </tr>
             </tbody>
         </table>

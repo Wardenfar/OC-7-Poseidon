@@ -48,18 +48,17 @@ public class BidService implements IService<Bid> {
 
     public List<Field> listFields(Bid e) {
         return List.of(
-                new Field("bidId", "ID", "int", e.getId()),
                 new Field("account", "Account", "text", e.getAccount()),
                 new Field("type", "Type", "text", e.getType()),
                 new Field("bidQuantity", "Bid Quantity", "double", e.getBidQuantity()),
                 new Field("askQuantity", "Ask Quantity", "double", e.getAskQuantity()),
-                new Field("bid", "Bid", "double", e.getBid()),
-                new Field("ask", "Ask", "double", e.getAsk()),
+                new Field("bidValue", "Bid", "double", e.getBidValue()),
+                new Field("askValue", "Ask", "double", e.getAskValue()),
                 new Field("benchmark", "Benchmark", "double", e.getBenchmark()),
                 new Field("bidDate", "Date", "date", e.getBidDate()),
                 new Field("commentary", "Commentary", "text", e.getCommentary()),
                 new Field("security", "Security", "text", e.getSecurity()),
-                new Field("status", "Status", "date", e.getStatus()),
+                new Field("status", "Status", "text", e.getStatus()),
                 new Field("trader", "Trader", "text", e.getTrader()),
                 new Field("book", "Book", "text", e.getBook()),
                 new Field("creationName", "Name of Creation", "text", e.getCreationName()),

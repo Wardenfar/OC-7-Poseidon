@@ -23,7 +23,8 @@ public class BidController {
     BidService bidService;
 
     @RequestMapping("/bid/list")
-    public String home(Model model) {
+    public String home(Model model, @RequestParam Optional<String> msg) {
+        msg.ifPresent((m) -> model.addAttribute("msg", m));
         model.addAttribute("bids", bidService.findAll());
         return "bid/list";
     }
@@ -44,7 +45,7 @@ public class BidController {
             return RedirectUtil.redirectTo("/bid/add", null, error);
         }
         bidService.save(bid);
-        return RedirectUtil.redirectTo("/bid/list", null, null);
+        return RedirectUtil.redirectTo("/bid/list", "Bid succesfully added !", null);
     }
 
     @GetMapping("/bid/update/{id}")
@@ -69,7 +70,7 @@ public class BidController {
         }
         bid.setId(id);
         bidService.save(bid);
-        return RedirectUtil.redirectTo("/bid/list", null, null);
+        return RedirectUtil.redirectTo("/bid/list", "Bid succesfully updated !", null);
     }
 
     @GetMapping("/bid/delete/{id}")

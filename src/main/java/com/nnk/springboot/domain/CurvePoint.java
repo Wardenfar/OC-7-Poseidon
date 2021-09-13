@@ -22,10 +22,6 @@ public class CurvePoint {
     Integer id;
 
     @Column
-    @NotNull
-    Integer curveId;
-
-    @Column
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @NotNull
     LocalDate asOfDate;
@@ -43,8 +39,8 @@ public class CurvePoint {
     @NotNull
     LocalDate creationDate;
 
-    public CurvePoint(int curveId, double term, double value) {
-        setCurveId(curveId);
+    public CurvePoint(int id, double term, double value) {
+        setId(id);
         setTerm(term);
         setValue(value);
     }

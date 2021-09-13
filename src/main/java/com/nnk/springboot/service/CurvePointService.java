@@ -55,7 +55,6 @@ public class CurvePointService implements IService<CurvePoint> {
     @Override
     public List<Field> listFields(CurvePoint e) {
         return List.of(
-                new Field("curveId", "ID", "int", e.getCurveId()),
                 new Field("asOfDate", "As of Date", "date", e.getAsOfDate()),
                 new Field("term", "Term", "double", e.getTerm()),
                 new Field("value", "Value", "double", e.getValue()),

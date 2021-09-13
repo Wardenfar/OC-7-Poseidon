@@ -24,6 +24,9 @@
         </div>
     </div>
     <div class="row"><h2>Bid List</h2></div>
+
+    <div th:insert="common/msg"></div>
+    
     <div class="row">
         <a class="btn btn-primary btn-sm" th:href="@{/bid/add}">Add New</a>
         <table class="table table-bordered">
@@ -38,11 +41,14 @@
             </thead>
             <tbody>
             <tr th:each="b: ${bids}">
-                <td th:text="${b.bidId}"></td>
+                <td th:text="${b.id}"></td>
                 <td th:text="${b.account}"></td>
                 <td th:text="${b.type}"></td>
                 <td th:text="${b.bidQuantity}"></td>
-                <td>Actions</td>
+                <td>
+                    <a class="btn btn-primary btn-sm" th:href="@{/bid/update/{id}(id=${b.id})}">Update</a>              
+                    <a class="btn btn-primary btn-sm" th:href="@{/bid/delete/{id}(id=${b.id})}">Delete</a>              
+                </td>
             </tr>
             </tbody>
         </table>

@@ -41,11 +41,11 @@ public class Bid {
 
     @Column
     @NotNull
-    Double bid;
+    Double bidValue;
 
     @Column
     @NotNull
-    Double ask;
+    Double askValue;
 
     @Column
     @NotBlank
