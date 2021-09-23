@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="utf-8"/>
     <title>Home</title>
@@ -12,6 +12,8 @@
     <div class="row">
         <h2>Add New Rule</h2>
     </div>
+
+    <div th:insert="common/msg"></div>
 
     <div class="row">
         <form action="#" class="form-horizontal" method="post" style="width: 100%" th:action="@{/rule/validate}"

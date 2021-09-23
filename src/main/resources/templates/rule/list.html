@@ -25,7 +25,7 @@
     </div>
     <div class="row"><h2>Rule List</h2></div>
     <div class="row">
-        <a th:href="@{/rule/add}">
+        <a class="btn btn-primary btn-sm" th:href="@{/rule/add}">Add New</a>
         <table class="table table-bordered">
             <thead>
             <tr>
@@ -40,7 +40,19 @@
             </tr>
             </thead>
             <tbody>
-            <!-- TODO: Show all RuleName to the table, the Action column will have Edit & Delete buttons -->
+            <tr th:each="r: ${rules}">
+                <td th:text="${r.id}"></td>
+                <td th:text="${r.name}"></td>
+                <td th:text="${r.description}"></td>
+                <td th:text="${r.json}"></td>
+                <td th:text="${r.template}"></td>
+                <td th:text="${r.sqlStr}"></td>
+                <td th:text="${r.sqlPart}"></td>
+                <td>
+                    <a class="btn btn-primary btn-sm" th:href="@{/rule/update/{id}(id=${r.id})}">Update</a>
+                    <a class="btn btn-primary btn-sm" th:href="@{/rule/delete/{id}(id=${r.id})}">Delete</a>
+                </td>
+            </tr>
             </tbody>
         </table>
     </div>

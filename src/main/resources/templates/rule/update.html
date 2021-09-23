@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="utf-8"/>
     <title>Home</title>
@@ -8,20 +8,23 @@
 </head>
 <body>
 <div class="container">
-
     <div class="row">
-        <h2>Update New Rule</h2>
+        <h2>Update Rule</h2>
     </div>
 
-    <div class="row">
-        <form action="#" class="form-horizontal" method="post" style="width: 100%"
-              th:action="@{/templates/rule/update/{id}(id=${rule.id})}" th:object="${rule}">
-            <!--
-            TODO: Create a form to edit the values of RuleName, there are 2 buttons: Update data and Cancel to the RuleName
-             -->
+    <div th:insert="common/msg"></div>
 
+    <div class="row">
+        <form action="#" class="form-horizontal" method="post" style="width: 100%" th:action="@{/rule/update/{id}(id=${rule.id})}"
+              th:object="${rule}">
+            <div th:insert="common/form"></div>
+            <div class="d-flex mt-2">
+                <a class="btn btn-danger m-1" th:href="@{/rule/list}">Cancel</a>
+                <button class="btn btn-success m-1" type="submit">Submit</button>
+            </div>
         </form>
     </div>
+
 
 </div>
 </body>

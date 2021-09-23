@@ -25,7 +25,7 @@
     </div>
     <div class="row"><h2>Rating List</h2></div>
     <div class="row">
-        <a th:href="@{/rating/add}">
+        <a class="btn btn-primary btn-sm" th:href="@{/rating/add}">Add New</a>
         <table class="table table-bordered">
             <thead>
             <tr>
@@ -38,7 +38,17 @@
             </tr>
             </thead>
             <tbody>
-            <!-- TODO: Show all Rating to the table, the Action column will have Edit & Delete buttons -->
+                <tr th:each="r: ${ratings}">
+                    <td th:text="${r.id}"></td>
+                    <td th:text="${r.moodysRating}"></td>
+                    <td th:text="${r.sandPRating}"></td>
+                    <td th:text="${r.fitchRating}"></td>
+                    <td th:text="${r.orderNumber}"></td>
+                    <td>
+                        <a class="btn btn-primary btn-sm" th:href="@{/rating/update/{id}(id=${r.id})}">Update</a>
+                        <a class="btn btn-primary btn-sm" th:href="@{/rating/delete/{id}(id=${r.id})}">Delete</a>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>

@@ -44,3 +44,5 @@ public class Rule {
         setSqlPart(sqlPart);
     }
 }
+
+

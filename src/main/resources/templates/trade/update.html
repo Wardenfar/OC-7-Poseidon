@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="utf-8"/>
     <title>Home</title>
@@ -12,14 +12,19 @@
         <h2>Update Trade</h2>
     </div>
 
+    <div th:insert="common/msg"></div>
+
     <div class="row">
-        <form action="#" class="form-horizontal" method="post" style="width: 100%"
-              th:action="@{/trade/update/{id}(id=${trade.tradeId})}" th:object="${trade}">
-            <!--
-            TODO: Create a form to edit the values of Trade, there are 2 buttons: Update data and Cancel to the Trade List
-             -->
+        <form action="#" class="form-horizontal" method="post" style="width: 100%" th:action="@{/trade/update/{id}(id=${trade.id})}"
+              th:object="${trade}">
+            <div th:insert="common/form"></div>
+            <div class="d-flex mt-2">
+                <a class="btn btn-danger m-1" th:href="@{/trade/list}">Cancel</a>
+                <button class="btn btn-success m-1" type="submit">Submit</button>
+            </div>
         </form>
     </div>
+
 
 </div>
 </body>

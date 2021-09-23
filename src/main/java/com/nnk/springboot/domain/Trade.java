@@ -3,9 +3,10 @@ package com.nnk.springboot.domain;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.time.LocalDate;
 
 
 @Entity
@@ -17,7 +18,7 @@ public class Trade {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Integer tradeId;
+    Integer id;
 
     @Column
     String account;
@@ -41,7 +42,8 @@ public class Trade {
     String benchmark;
 
     @Column
-    Timestamp tradeDate;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    LocalDate tradeDate;
 
     @Column
     String security;
@@ -59,13 +61,15 @@ public class Trade {
     String creationName;
 
     @Column
-    Timestamp creationDate;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    LocalDate creationDate;
 
     @Column
     String revisionName;
 
     @Column
-    Timestamp revisionDate;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    LocalDate revisionDate;
 
     @Column
     String dealName;

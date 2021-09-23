@@ -45,13 +45,13 @@ public class BidController {
             return RedirectUtil.redirectTo("/bid/add", null, error);
         }
         bidService.save(bid);
-        return RedirectUtil.redirectTo("/bid/list", "Bid succesfully added !", null);
+        return RedirectUtil.redirectTo("/bid/list", "Bid successfully added !", null);
     }
 
     @GetMapping("/bid/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model, @RequestParam Optional<String> msg, @RequestParam Optional<String> error) throws EntityNotFoundException {
         Optional<Bid> optional = bidService.findById(id);
-        if(optional.isEmpty()) {
+        if (optional.isEmpty()) {
             throw new EntityNotFoundException("Bid not found");
         }
         Bid e = optional.get();
@@ -70,12 +70,20 @@ public class BidController {
         }
         bid.setId(id);
         bidService.save(bid);
-        return RedirectUtil.redirectTo("/bid/list", "Bid succesfully updated !", null);
+        return RedirectUtil.redirectTo("/bid/list", "Bid successfully updated !", null);
     }
 
     @GetMapping("/bid/delete/{id}")
-    public String deleteBid(@PathVariable("id") Integer id, Model model) {
-        // TODO: Find Bid by Id and delete the bid, return to Bid list
-        return "redirect:/bid/list";
+    public RedirectView deleteBid(@PathVariable("id") Integer id) throws EntityNotFoundException {
+        bidService.delete(getBidOrThrow(id));
+        return RedirectUtil.redirectTo("/bid/list", "Bid successfully deleted !", null);
+    }
+
+    private Bid getBidOrThrow(Integer id) throws EntityNotFoundException {
+        Optional<Bid> optional = bidService.findById(id);
+        if (optional.isEmpty()) {
+            throw new EntityNotFoundException("Bid not found");
+        }
+        return optional.get();
     }
 }
