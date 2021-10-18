@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "rule")
@@ -18,21 +19,27 @@ public class Rule {
     Integer id;
 
     @Column
+    @NotBlank
     String name;
 
     @Column
+    @NotBlank
     String description;
 
     @Column
+    @NotBlank
     String json;
 
     @Column
+    @NotBlank
     String template;
 
     @Column
+    @NotBlank
     String sqlStr;
 
     @Column
+    @NotBlank
     String sqlPart;
 
     public Rule(String name, String description, String json, String template, String sql, String sqlPart) {

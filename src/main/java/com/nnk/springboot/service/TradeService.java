@@ -4,6 +4,7 @@ import com.nnk.springboot.domain.Trade;
 import com.nnk.springboot.error.EntityNotValidException;
 import com.nnk.springboot.model.Field;
 import com.nnk.springboot.repositories.TradeRepository;
+import com.nnk.springboot.util.LogUtil;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,6 +37,7 @@ public class TradeService implements IService<Trade> {
 
     public void delete(Trade e) {
         repository.delete(e);
+        LogUtil.logEntityDeleted("Trade", e.getId());
     }
 
     public void save(Trade e) throws EntityNotValidException {
@@ -43,6 +45,7 @@ public class TradeService implements IService<Trade> {
         if (!valid) {
             throw new EntityNotValidException("Trade not valid");
         }
+        LogUtil.logEntityAdded("Trade", e.getId());
         repository.save(e);
     }
 

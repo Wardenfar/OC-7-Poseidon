@@ -4,6 +4,7 @@ import com.nnk.springboot.domain.Rule;
 import com.nnk.springboot.error.EntityNotValidException;
 import com.nnk.springboot.model.Field;
 import com.nnk.springboot.repositories.RuleRepository;
+import com.nnk.springboot.util.LogUtil;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,6 +37,7 @@ public class RuleService implements IService<Rule> {
 
     public void delete(Rule e) {
         repository.delete(e);
+        LogUtil.logEntityDeleted("Rule", e.getId());
     }
 
     public void save(Rule e) throws EntityNotValidException {
@@ -43,6 +45,7 @@ public class RuleService implements IService<Rule> {
         if (!valid) {
             throw new EntityNotValidException("Rule not valid");
         }
+        LogUtil.logEntityAdded("Rule", e.getId());
         repository.save(e);
     }
 

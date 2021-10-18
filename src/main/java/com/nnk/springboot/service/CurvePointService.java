@@ -4,6 +4,7 @@ import com.nnk.springboot.domain.CurvePoint;
 import com.nnk.springboot.error.EntityNotValidException;
 import com.nnk.springboot.model.Field;
 import com.nnk.springboot.repositories.CurvePointRepository;
+import com.nnk.springboot.util.LogUtil;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,6 +42,7 @@ public class CurvePointService implements IService<CurvePoint> {
     @Override
     public void delete(CurvePoint e) {
         repository.delete(e);
+        LogUtil.logEntityDeleted("CurvePoint", e.getId());
     }
 
     @Override
@@ -49,6 +51,7 @@ public class CurvePointService implements IService<CurvePoint> {
         if (!valid) {
             throw new EntityNotValidException("CurvePoint not valid");
         }
+        LogUtil.logEntityAdded("CurvePoint", e.getId());
         repository.save(e);
     }
 

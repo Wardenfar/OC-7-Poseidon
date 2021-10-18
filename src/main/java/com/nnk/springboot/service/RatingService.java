@@ -4,6 +4,7 @@ import com.nnk.springboot.domain.Rating;
 import com.nnk.springboot.error.EntityNotValidException;
 import com.nnk.springboot.model.Field;
 import com.nnk.springboot.repositories.RatingRepository;
+import com.nnk.springboot.util.LogUtil;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,6 +37,7 @@ public class RatingService implements IService<Rating> {
 
     public void delete(Rating e) {
         repository.delete(e);
+        LogUtil.logEntityDeleted("Rating", e.getId());
     }
 
     public void save(Rating e) throws EntityNotValidException {
@@ -43,6 +45,7 @@ public class RatingService implements IService<Rating> {
         if (!valid) {
             throw new EntityNotValidException("Rating not valid");
         }
+        LogUtil.logEntityAdded("Rating", e.getId());
         repository.save(e);
     }
 

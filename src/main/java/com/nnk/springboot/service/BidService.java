@@ -4,6 +4,7 @@ import com.nnk.springboot.domain.Bid;
 import com.nnk.springboot.error.EntityNotValidException;
 import com.nnk.springboot.model.Field;
 import com.nnk.springboot.repositories.BidRepository;
+import com.nnk.springboot.util.LogUtil;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,6 +37,7 @@ public class BidService implements IService<Bid> {
 
     public void delete(Bid e) {
         repository.delete(e);
+        LogUtil.logEntityDeleted("Bid", e.getId());
     }
 
     public void save(Bid e) throws EntityNotValidException {
@@ -43,6 +45,7 @@ public class BidService implements IService<Bid> {
         if (!valid) {
             throw new EntityNotValidException("Bid not valid");
         }
+        LogUtil.logEntityAdded("Bid", e.getId());
         repository.save(e);
     }
 

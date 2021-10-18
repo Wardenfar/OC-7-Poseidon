@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
+import java.util.regex.Pattern;
 
 @Controller
 public class UserController {
@@ -34,6 +35,9 @@ public class UserController {
     @PostMapping("/user/validate")
     public String validate(@Valid User user, BindingResult result, Model model) {
         if (!result.hasErrors()) {
+            if (!checkPassword(user.getPassword())) {
+                return "user/add";
+            }
             BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
             user.setPassword(encoder.encode(user.getPassword()));
             userRepository.save(user);
@@ -58,6 +62,10 @@ public class UserController {
             return "user/update";
         }
 
+        if (!checkPassword(user.getPassword())) {
+            return "user/update";
+        }
+
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         user.setPassword(encoder.encode(user.getPassword()));
         user.setId(id);
@@ -72,5 +80,13 @@ public class UserController {
         userRepository.delete(user);
         model.addAttribute("users", userRepository.findAll());
         return "redirect:/user/list";
+    }
+
+    public static boolean checkPassword(String s) {
+        boolean containsUpper = Pattern.compile("[A-Z]").matcher(s).find();
+        boolean containsDigit = Pattern.compile("[0-9]").matcher(s).find();
+        boolean containsSymbol = Pattern.compile("[^A-Za-z0-9]").matcher(s).find();
+        boolean size = s.length() >= 8;
+        return containsUpper && containsDigit && containsSymbol && size;
     }
 }

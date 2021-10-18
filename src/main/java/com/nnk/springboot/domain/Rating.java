@@ -5,6 +5,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "rating")
@@ -18,15 +20,19 @@ public class Rating {
     Integer id;
 
     @Column
+    @NotBlank
     String moodysRating;
 
     @Column
+    @NotBlank
     String sandPRating;
 
     @Column
+    @NotBlank
     String fitchRating;
 
     @Column
+    @NotNull
     Integer orderNumber;
 
     public Rating(String moodysRating, String sandPRating, String fitchRating, int orderNumber) {
