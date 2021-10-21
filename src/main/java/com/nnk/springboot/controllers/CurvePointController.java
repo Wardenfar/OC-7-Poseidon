@@ -23,7 +23,8 @@ public class CurvePointController {
     CurvePointService curvePointService;
 
     @RequestMapping("/curvePoint/list")
-    public String home(Model model) {
+    public String home(Model model, @RequestParam Optional<String> msg) {
+        msg.ifPresent((m) -> model.addAttribute("msg", m));
         model.addAttribute("curvePoints", curvePointService.findAll());
         return "curvePoint/list";
     }
@@ -72,10 +73,10 @@ public class CurvePointController {
         return RedirectUtil.redirectTo("/curvePoint/list", "CurvePoint successfully updated !", null);
     }
 
-    @GetMapping(value = "/curvepoints/delete")
+    @GetMapping(value = "/curvePoint/delete/{id}")
     public RedirectView deleteCurvePoint(@PathVariable("id") Integer id) throws Exception {
         curvePointService.delete(getCurvePointOrThrow(id));
-        return RedirectUtil.redirectTo("/curvepoints/list", "CurvePoint successfully deleted !", null);
+        return RedirectUtil.redirectTo("/curvePoint/list", "CurvePoint successfully deleted !", null);
     }
 
     private CurvePoint getCurvePointOrThrow(Integer id) throws EntityNotFoundException {

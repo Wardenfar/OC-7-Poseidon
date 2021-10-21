@@ -1,8 +1,6 @@
 package com.nnk.springboot.domain;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -19,7 +17,7 @@ public class CurvePoint {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Integer id;
+    private Integer id;
 
     @Column
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
@@ -39,9 +37,10 @@ public class CurvePoint {
     @NotNull
     LocalDate creationDate;
 
-    public CurvePoint(int id, double term, double value) {
-        setId(id);
-        setTerm(term);
-        setValue(value);
+    public CurvePoint(LocalDate asOfDate, Double term, Double value, LocalDate creationDate) {
+        this.asOfDate = asOfDate;
+        this.term = term;
+        this.value = value;
+        this.creationDate = creationDate;
     }
 }

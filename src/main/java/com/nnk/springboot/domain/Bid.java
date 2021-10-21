@@ -111,8 +111,26 @@ public class Bid {
     String side;
 
     public Bid(String account, String type, double bidQuantity) {
-        this.setAccount(account);
-        this.setType(type);
-        this.setBidQuantity(bidQuantity);
+        this.account = account;
+        this.type = type;
+        this.bidQuantity = bidQuantity;
+        this.askQuantity = 1.0;
+        this.bidValue = 1.0;
+        this.askValue = 1.0;
+        this.benchmark = "fake";
+        this.bidDate = LocalDate.now();
+        this.commentary = "fake";
+        this.security = "fake";
+        this.status = "fake";
+        this.trader = "fake";
+        this.book = "fake";
+        this.creationName = "fake";
+        this.creationDate = LocalDate.now();
+        this.revisionName = "fake";
+        this.revisionDate = LocalDate.now();
+        this.dealName = "fake";
+        this.dealType = "fake";
+        this.sourceListId = "fake";
+        this.side = "fake";
     }
 }

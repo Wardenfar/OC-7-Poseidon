@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
 
@@ -21,7 +22,11 @@ public class ItBidTests {
     @Test
     public void testUntitledTestCase() {
         System.setProperty("webdriver.chrome.driver", "./chromedriver.exe");
-        WebDriver driver = new ChromeDriver();
+        WebDriver driver = new ChromeDriver(
+                new ChromeOptions()
+                        .setHeadless(true)
+                        .addArguments("--lang=en")
+        );
         driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
         driver.get("http://localhost:" + port);
         driver.findElement(By.linkText("User management")).click();

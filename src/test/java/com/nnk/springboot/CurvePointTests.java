@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,17 +23,17 @@ public class CurvePointTests {
 
     @Test
     public void curvePointTest() {
-        CurvePoint curvePoint = new CurvePoint(10, 10d, 30d);
+        CurvePoint curvePoint = new CurvePoint(LocalDate.now(), 2.2, 1.2, LocalDate.now());
 
         // Save
         curvePoint = curvePointRepository.save(curvePoint);
         assertNotNull(curvePoint.getId());
-		assertEquals(10, (int) curvePoint.getId());
+		assertEquals(2.2, curvePoint.getTerm());
 
         // Update
-		curvePoint.setId(20);
+		curvePoint.setTerm(4.4);
 		curvePoint = curvePointRepository.save(curvePoint);
-		assertEquals(20, (int) curvePoint.getId());
+        assertEquals(4.4, curvePoint.getTerm());
 
         // Find
         List<CurvePoint> listResult = curvePointRepository.findAll();
