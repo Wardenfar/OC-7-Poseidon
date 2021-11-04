@@ -20,7 +20,7 @@ public class ItTradeTests {
     private Integer port;
 
     @Test
-    public void testUntitledTestCase() {
+    public static void tradeTest(ItTradeTests itTradeTests) {
         System.setProperty("webdriver.chrome.driver", "./chromedriver.exe");
         WebDriver driver = new ChromeDriver(
                 new ChromeOptions()
@@ -28,7 +28,7 @@ public class ItTradeTests {
                         .addArguments("--lang=en")
         );
         driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-        driver.get("http://localhost:" + port);
+        driver.get("http://localhost:" + itTradeTests.port);
         driver.findElement(By.linkText("User management")).click();
         driver.findElement(By.id("username")).click();
         driver.findElement(By.id("username")).clear();

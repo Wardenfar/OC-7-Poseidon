@@ -20,7 +20,7 @@ public class ItCurvePointTests {
     private Integer port;
 
     @Test
-    public void testUntitledTestCase() {
+    public void curvePointTest() {
         System.setProperty("webdriver.chrome.driver", "./chromedriver.exe");
         WebDriver driver = new ChromeDriver(
                 new ChromeOptions()

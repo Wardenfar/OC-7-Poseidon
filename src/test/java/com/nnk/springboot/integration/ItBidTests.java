@@ -20,7 +20,7 @@ public class ItBidTests {
     private Integer port;
 
     @Test
-    public void testUntitledTestCase() {
+    public void bidTest() {
         System.setProperty("webdriver.chrome.driver", "./chromedriver.exe");
         WebDriver driver = new ChromeDriver(
                 new ChromeOptions()
