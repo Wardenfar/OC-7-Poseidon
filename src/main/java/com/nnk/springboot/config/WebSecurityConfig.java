@@ -38,22 +38,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
+                .antMatchers("/oauth2/**")
+                .permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
                 .formLogin()
-                .loginProcessingUrl("/app/login_check")
-                .loginPage("/app/login")
                 .successForwardUrl("/bid/list")
                 .failureForwardUrl("/app/error")
-                .usernameParameter("j_username")
-                .passwordParameter("j_password")
                 .permitAll()
                 .and()
                 .logout()
                 .logoutUrl("/app/logout")
                 .logoutSuccessUrl("/")
-                .permitAll();
+                .permitAll()
+                .and()
+                .oauth2Login()
+                .defaultSuccessUrl("/bid/list")
+                .failureUrl("/app/error");
     }
 
 }

@@ -1,6 +1,5 @@
 package com.nnk.springboot.filter;
 
-import com.nnk.springboot.domain.User;
 import com.nnk.springboot.service.UserService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,6 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Optional;
 
 @Component
 @Log4j2
@@ -28,11 +26,7 @@ public class RequestLoggerFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
 
-        Optional<User> user = userService.getCurrentUser();
-        String userValue = "null";
-        if(user.isPresent()){
-            userValue = user.get().getUsername();
-        }
+        String userValue = userService.getCurrentUserName();
 
         log.info("{} - Request {} {}", userValue, req.getMethod(), req.getRequestURI());
         try {
